@@ -1,0 +1,11 @@
+news:
+  id: 1
+  name: news_fetcher.rb
+  description: Fetch news feed
+  code: rxn1r
+
+data_feed:
+  id: 2
+  name: data_feeds.rb
+  description: Fetch data feeds
+  code: kgt91

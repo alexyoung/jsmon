@@ -1,0 +1,59 @@
+<div id="dashboard" class="panel">
+  <h2>Failing Services: <%= @failing_services.count %></h2>
+  <p class="failures"><%= @failing_services.collect { |service| service.name }.join(', ') %></p>
+
+  <h2>Recent History</h2>
+  <% @statuses.each do |status| %>
+    <p><%= status.service.name %>: <%= status.state %> <%= "(#{status.exit_code})" if status.exit_code %></p>
+  <% end %>
+</div>
+
+<div id="manage" class="panel" style="display: none">
+  <h2>Manage</h2>
+  <% if params[:created] == 'true' %><div class="feedback">Your service has been created.</div><% end %>
+  <% if params[:created] == 'false' %><div class="error">Your service could not be saved.  Please ensure you enter a name.</div><% end %>
+  <form method="post" action="/service">
+    <div>
+      <label>Name</label>
+      <input type="text" name="name" value="" size="20" />
+    </div>
+    <div>
+      <label>Description</label>
+      <input type="text" name="description" value="" size="20" />
+    </div>
+    <input type="submit" value="Add Service" />
+  </form>
+
+  <h3>Edit Services</h3>
+  <% if params[:updated] == 'true' %><div class="feedback">Your changes have been saved.</div><% end %>
+  <% if params[:updated] == 'false' %><div class="error">Your changes could not be saved.  Please ensure you enter a name for each service.</div><% end %>
+  <form method="post" action="/services/update">
+    <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Delete?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @services.each do |service| %>
+          <tr>
+            <td><%= service.code %></td>
+            <td><input type="text" name="services[<%= service.code %>][name]" value="<%= service.name %>" size="20" /></td>
+            <td><input type="text" name="services[<%= service.code %>][description]" value="<%= service.description %>" size="20" /></td>
+            <td><input type="checkbox" name="services[<%= service.code %>][delete]" value="1" /></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <input type="submit" value="Save Changes" />
+  </form>
+</div>
+
+<div id="about" class="panel" style="display: none">
+  <h2>About</h2>
+  <p>JsMon helps you track services running from systems like cron.</p>
+  <p>&copy; <%= Date.today.year %> Helicoid Limited.</p>
+</div>

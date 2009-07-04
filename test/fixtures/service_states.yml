@@ -1,0 +1,39 @@
+news_1:
+  id: 1
+  service_id: 1
+  state: success
+  exit_code: 0
+  created_at: <%= Time.parse('1st May').to_i %>
+  updated_at: <%= Time.parse('1st May').to_i %>
+
+news_2:
+  id: 2
+  service_id: 1
+  state: success
+  exit_code: 0
+  created_at: <%= Time.parse('2nd May').to_i %>
+  updated_at: <%= Time.parse('2nd May').to_i %>
+
+news_3:
+  id: 3
+  service_id: 1
+  state: failure
+  exit_code: 127
+  created_at: <%= Time.parse('3rd May').to_i  %>
+  updated_at: <%= Time.parse('3rd May').to_i  %>
+
+data_feed_1:
+  id: 4
+  service_id: 2
+  state: failure
+  exit_code: 97
+  created_at: <%= Time.parse('1st May').to_i  %>
+  updated_at: <%= Time.parse('1st May').to_i  %>
+
+data_feed_2:
+  id: 5
+  service_id: 2
+  state: success
+  exit_code: 0
+  created_at: <%= Time.parse('2nd May').to_i  %>
+  updated_at: <%= Time.parse('2nd May').to_i  %>

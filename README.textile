@@ -1,0 +1,52 @@
+h2. About
+
+JsMon is a spy that waits for you to send a GET to it.  It provides a simple dashboard so you can view the overall state of these services.
+
+The dashboard is designed to show information in "dark and silent cockpit mode" -- failure is highlighted, the rest is probably noise.
+
+!http://files.getdropbox.com/u/221414/jsmon.png!
+
+This project is just a weekend lolaround, but if you use something similar (that's open source), or would like to contribute, please message me on GitHub.
+
+h2. Uses
+
+You could use it to monitor:
+
+* Cron jobs failing (rather than the annoying emails, if you even get/want them)
+* The state of long-running processes
+* When a particular URL is hit in a web app
+
+h2. More Background: Monit, God, etc.
+
+I use monit to monitor my servers, but sometimes a machine isn't running monit, or making monit watch a particular thing would be awkward.  Sometimes I just need to be able to call a URL when something happens.  That's what this project is all about.
+
+I have so many cron jobs running on different servers and different clients that I want to stop situations where they quietly fail.  I'm writing a little shell script to call JsMon like this:
+
+<code>0 4 * * * /opt/everycity/scripts/backups/backup.sh | /usr/bin/jsmon</code>
+
+That will use curl to fetch the relevant JsMon URL.  The script sends the exit_code and determines the state based on it.
+
+Meanwhile, I have a Jabber bot process elsewhere that keeps memory leaking and exploding.  The weird thing is it stays connected even when it can't respond, due to some quirk of the library or my code, and it also keeps the process running so monit can't restart it.  I think something weird is going on with threads.  So I want to call JsMon when this happens so I can go and look at what the logs say and possibly restarts it.
+
+h2. API
+
+Call <code>/service/code/failure</code> to report a failure.  The code is a unique code created when you add a service through the web interface.  Other parameters are available too: pass those as GET parameters.
+
+* <code>exit_code</code>: The process's exit code
+* <code>info</code>: Any extra text about the event
+
+h2. Usage
+
+This is a Sinatra application that can be run with Passenger, or through a proxy to a web server.
+
+* <code>ruby jsmon.rb</code> will let you try it out locally (port 4567)
+* <code>rake db:migrate</code> will set up the database
+* <code>rake db:fixtures</code> sets up sample data
+* <code>rake --tasks</code> shows other rake tasks
+* ActiveRecord and ActiveSupport are required
+
+h2. Todo
+
+* The exit_code script described above that I can shove into cron
+* RSS feeds: failure incidents, overall activity
+* Old data should be automatically cleared

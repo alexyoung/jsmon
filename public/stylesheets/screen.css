@@ -1,0 +1,31 @@
+body { margin: 0 auto; padding: 0; font-family: helvetica, sans-serif; font-size: 16px; color: #fff; }
+html, body { background: #111; }
+body { padding: 20px 40px }
+h1, h2, h3, h4 { margin: 0; padding: 0; }
+h1 { text-transform: uppercase; font-size: 130%; margin-bottom: 10px; color: #aaa; width: 50%; float: left }
+h2 { text-transform: uppercase; font-size: 110%; margin-bottom: 10px; color: #aaa }
+h3 { text-transform: uppercase; font-size: 100%; margin: 30px 0 10px 0; color: #aaa }
+a { color: #aaa; }
+a:hover { color: #aaa; }
+h1 a { color: #fff }
+
+div#header { width: 100%; clear: both; float: left; margin-bottom: 10px }
+ul.navigation { float: right; padding: 0; margin: 0; list-style-type: none }
+ul.navigation li { float: left; padding: 0; margin: 0 0 0 15px; text-transform: uppercase; }
+ul.navigation li a { text-decoration: none; font-weight: bold; color: #999 }
+ul.navigation li a:hover, ul.navigation li a.active { color: #fff }
+.failures { background-color: #333; padding: 10px 5px; font-weight: bold; color: #fe2e9a }
+
+form { margin: 10px 0 20px 0 }
+form div { margin: 10px 0 }
+form div label { width: 8em; display: block; float: left }
+input:focus { background-color: #ffa }
+
+table { margin: 0 0 10px 0 }
+table th, table td { text-align: left; padding: 5px 10px 5px 5px; margin: 0 }
+table th { border-bottom: 2px solid #999 }
+table td { border-bottom: 1px solid #999; background-color: #222 }
+
+div.feedback, div.error { font-weight: bold; padding: 10px }
+div.feedback { background-color: #009900 }
+div.error { background-color: #990000 }
