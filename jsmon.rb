@@ -7,6 +7,7 @@ require 'config/db.rb'
 class Service < ActiveRecord::Base
   validates_presence_of :code, :name
   validates_uniqueness_of :code
+  validates_format_of :code, :with => /\A[a-zA-Z0-9_]*\Z/, :on => :update
   has_many :service_states, :dependent => :destroy
 
   before_validation_on_create :set_unique_code
@@ -79,7 +80,8 @@ post '/services/update' do
   params['services'].each do |code, values|
     attributes = {
       :name => values['name'],
-      :description => values['description']
+      :description => values['description'],
+      :code => values['code']
     }
     updated = false unless Service.find_by_code(code).update_attributes(attributes)
     Service.find_by_code(code).destroy if values['delete']

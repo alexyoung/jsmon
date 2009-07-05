@@ -29,3 +29,4 @@ table td { border-bottom: 1px solid #999; background-color: #222 }
 div.feedback, div.error { font-weight: bold; padding: 10px }
 div.feedback { background-color: #009900 }
 div.error { background-color: #990000 }
+.quiet { color: #aaa }

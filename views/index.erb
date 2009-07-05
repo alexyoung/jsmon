@@ -26,7 +26,7 @@
 
   <h3>Edit Services</h3>
   <% if params[:updated] == 'true' %><div class="feedback">Your changes have been saved.</div><% end %>
-  <% if params[:updated] == 'false' %><div class="error">Your changes could not be saved.  Please ensure you enter a name for each service.</div><% end %>
+  <% if params[:updated] == 'false' %><div class="error">Your changes could not be saved.  Please ensure you enter a name and valid code for each service.</div><% end %>
   <form method="post" action="/services/update">
     <table cellpadding="0" cellspacing="0">
       <thead>
@@ -40,7 +40,7 @@
       <tbody>
         <% @services.each do |service| %>
           <tr>
-            <td><%= service.code %></td>
+            <td><input type="text" name="services[<%= service.code %>][code]" value="<%= service.code %>" size="20" /></td>
             <td><input type="text" name="services[<%= service.code %>][name]" value="<%= service.name %>" size="20" /></td>
             <td><input type="text" name="services[<%= service.code %>][description]" value="<%= service.description %>" size="20" /></td>
             <td><input type="checkbox" name="services[<%= service.code %>][delete]" value="1" /></td>
@@ -54,6 +54,6 @@
 
 <div id="about" class="panel" style="display: none">
   <h2>About</h2>
-  <p>JsMon helps you track services running from systems like cron.</p>
-  <p>&copy; <%= Date.today.year %> Helicoid Limited.</p>
+  <p>JsMon tracks the state of services through GET requests.  Read more on GitHub: <a href="http://github.com/alexyoung/jsmon">JsMon</a>.</p>
+  <p class="quiet">&copy; <%= Date.today.year %> Helicoid Limited.</p>
 </div>
