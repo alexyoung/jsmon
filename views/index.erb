@@ -1,6 +1,10 @@
 <div id="dashboard" class="panel">
-  <h2>Failing Services: <%= @failing_services.count %></h2>
-  <p class="failures"><%= @failing_services.collect { |service| service.name }.join(', ') %></p>
+  <% if @failing_services.count > 0 %>
+    <h2>Failing Services: <%= @failing_services.count %></h2>
+    <p class="failures">
+      <%= display_failing_services @failing_services %>
+    </p>
+  <% end %>
 
   <h2>Recent History</h2>
   <% @statuses.each do |status| %>
@@ -43,7 +47,10 @@
             <td><input type="text" name="services[<%= service.code %>][code]" value="<%= service.code %>" size="20" /></td>
             <td><input type="text" name="services[<%= service.code %>][name]" value="<%= service.name %>" size="20" /></td>
             <td><input type="text" name="services[<%= service.code %>][description]" value="<%= service.description %>" size="20" /></td>
-            <td><input type="checkbox" name="services[<%= service.code %>][delete]" value="1" /></td>
+            <td>
+              <input type="checkbox" name="services[<%= service.code %>][delete]" value="1" />
+              <input type="hidden" name="services[<%= service.code %>][hidden]" value="false" />
+            </td>
           </tr>
         <% end %>
       </tbody>

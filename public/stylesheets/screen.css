@@ -14,7 +14,11 @@ ul.navigation { float: right; padding: 0; margin: 0; list-style-type: none }
 ul.navigation li { float: left; padding: 0; margin: 0 0 0 15px; text-transform: uppercase; }
 ul.navigation li a { text-decoration: none; font-weight: bold; color: #999 }
 ul.navigation li a:hover, ul.navigation li a.active { color: #fff }
-.failures { background-color: #333; padding: 10px 5px; font-weight: bold; color: #fe2e9a }
+.failures { background-color: #333; padding: 10px 5px; font-weight: bold; color: #aaa }
+.failures a { color: #fe2e9a; text-decoration: none }
+.failures a:hover { text-decoration: underline }
+#hide_failure { font-size: 80%; background-color: #3a3a4a; padding: 3px 4px 1px 4px; border: 1px solid #666; color: #fff } 
+#hide_failure a { text-transform: uppercase }
 
 form { margin: 10px 0 20px 0 }
 form div { margin: 10px 0 }
