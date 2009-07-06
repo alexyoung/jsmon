@@ -7,7 +7,7 @@ Event.observe(window, 'dom:loaded', function() {
     var element = Event.element(e);
     if (element.hasClassName('hide_failure')) {
       var service_link = element.up().previous('a');
-      var code = service_link.id.split('_').last();
+      var code = service_link.id.split('service_').last();
       new Ajax.Request('/services/update', {
         method: 'post',
         postBody: "services[#{code}][hidden]=true".interpolate({ 'code': code }),
